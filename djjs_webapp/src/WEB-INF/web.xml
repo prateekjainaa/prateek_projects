@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<display-name>DJJS webapp</display-name>
+
+
+	<servlet>
+		<servlet-name>getStates</servlet-name>
+		<servlet-class>org.djjs.servlet.GetStates</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>getAllowedAreas</servlet-name>
+		<servlet-class>org.djjs.servlet.GetAllowedAreas</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>addUser</servlet-name>
+		<servlet-class>org.djjs.servlet.AddUser</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>getUser</servlet-name>
+		<servlet-class>org.djjs.servlet.GetUser</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>org.djjs.servlet.Search</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>upload</servlet-name>
+		<servlet-class>org.djjs.servlet.UploadImage</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>edit</servlet-name>
+		<servlet-class>org.djjs.servlet.EditUser</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>command</servlet-name>
+		<servlet-class>org.djjs.servlet.Command</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>initApp</servlet-name>
+		<servlet-class>org.djjs.servlet.InitializeApp</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>consoleadminlogin</servlet-name>
+		<servlet-class>org.djjs.servlet.ConsoleAdminLogin</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>assignAreas</servlet-name>
+		<servlet-class>org.djjs.servlet.AssignAreasToAdmin</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>org.djjs.servlet.Logout</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ashrams</servlet-name>
+		<servlet-class>org.djjs.servlet.Aashrams</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>memberBulkUpload</servlet-name>
+		<servlet-class>org.djjs.servlet.MemberBulkUpload</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>getSewas</servlet-name>
+		<servlet-class>org.djjs.servlet.GetSewas</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>memberBulkUpload</servlet-name>
+		<url-pattern>/memberBulkUpload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>getAllowedAreas</servlet-name>
+		<url-pattern>/getAllowedAreas</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>ashrams</servlet-name>
+		<url-pattern>/ashrams</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>initApp</servlet-name>
+		<url-pattern>/initApp</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>command</servlet-name>
+		<url-pattern>/command</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>edit</servlet-name>
+		<url-pattern>/editUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>upload</servlet-name>
+		<url-pattern>/uploadDoc</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>getStates</servlet-name>
+		<url-pattern>/getStates</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>addUser</servlet-name>
+		<url-pattern>/addUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>getUser</servlet-name>
+		<url-pattern>/getUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>consoleadminlogin</servlet-name>
+		<url-pattern>/consoleadminlogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>assignAreas</servlet-name>
+		<url-pattern>/assignAreas</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>getSewas</servlet-name>
+		<url-pattern>/getSewas</url-pattern>
+	</servlet-mapping>
+	
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<taglib>
+		<taglib-uri>/tags/display</taglib-uri>
+		<taglib-location>/WEB-INF/displaytag.tld</taglib-location>
+	</taglib>
+
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+
+
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/fm</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<!--
+		<resource-ref> <description>EMAIL Connection</description>
+		<res-ref-name>mail/Session</res-ref-name>
+		<res-type>javax.mail.Session</res-type> <res-auth>Container</res-auth>
+		</resource-ref>
+	-->
+	<welcome-file-list>
+	<welcome-file>
+	index.html
+	</welcome-file>
+	</welcome-file-list>
+	
+</web-app>

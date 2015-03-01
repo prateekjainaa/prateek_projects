@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context override="true">
+
+	<Resource name="jdbc/fm" auth="Container"
+		type="javax.sql.DataSource" maxActive="100" maxIdle="30"
+		maxWait="10000" username="root" password="welcome"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/djjs_webapp" />
+	
+	<!--<Resource name="mail/Session" auth="Container"
+		type="javax.mail.Session" />
+	
+ 
+		<ResourceParams name="mail/Session">
+		<parameter>
+		<name>mail.smtp.host</name>
+		<value>smtp.sify.com</value>
+		</parameter>
+		<parameter>
+		<name>mail.user</name>
+		<value>bc_152a</value>
+		</parameter>
+		<parameter>
+		<name>mail.password</name>
+		<value>123456</value>
+		</parameter>
+		</ResourceParams>
+
+
+--></Context>

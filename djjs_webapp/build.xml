@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<!--
+build file for djjs_webapp
+@author Prateek Jain
+-->
+
+<project name="djjs_webapp" basedir="." default="deploy">
+
+	<property environment="env" />
+	<property name="sever.home" value="${env.TOMCAT_HOME}" />
+	<property name="classes.dir" value="${basedir}/src/WEB-INF/classes" />
+	<property name="classeslib" value="${basedir}/src/WEB-INF/lib" />
+
+	<path id="master-classpath">
+			<fileset dir="${server.home}/common/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${server.home}/shared/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${server.home}/server/lib">
+				<include name="*.jar" />
+			</fileset>
+
+		</path>
+	<target name="deploy" depends="package">
+		<copy todir="${sever.home}/webapps">
+			<fileset dir="${basedir}/run/war">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+		<delete dir="${sever.home}/webapps/djjs_webapp/" />
+	</target>
+
+	<target name="package" depends="compile.java">
+		<delete dir="${basedir}/run/war" />
+		<mkdir dir="${basedir}/run/war" />
+		<mkdir dir="${basedir}/run/war/WEB-INF" />
+		<copydir dest="${basedir}/run/war/WEB-INF" src="${basedir}/src/WEB-INF">
+			<include name="**/**" />
+		</copydir>
+		
+		<mkdir dir="${basedir}/run/war/META-INF" />
+		<copyfile dest="${basedir}/run/war/META-INF/context.xml" src="${basedir}/src/META-INF/context.xml" />
+		<copyfile dest="${basedir}/run/war/WEB-INF/classes/log4j.properties" src="${basedir}/conf/log4j.properties" />
+		<copyfile dest="${basedir}/run/war/WEB-INF/classes/displaytag.properties" src="${basedir}/conf/displaytag.properties" />	
+		<copy todir="${basedir}/run/war/">
+		  <fileset dir="${basedir}/jsps/">
+		    <include name="*.jsp"/>
+		  	<include name="*.html"/>
+		  	<include name="*.csv"/>
+		  </fileset>
+		</copy>
+		
+		<mkdir dir="${basedir}/run/war/img"/>
+		<copy todir="${basedir}/run/war/img">
+		  <fileset dir="${basedir}/img/">
+		    <include name="*.*"/>
+		  </fileset>		   
+		</copy>
+		
+		<mkdir dir="${basedir}/run/war/css"/>
+		<copy todir="${basedir}/run/war/css">
+		  <fileset dir="${basedir}/css/">
+		    <include name="*.*"/>
+		  </fileset>		   
+		</copy>
+		
+		<jar destfile="${basedir}/run/war/${ant.project.name}.war" compress="true">
+			<fileset dir="${basedir}/run/war">
+				<include name="**/**" />
+			</fileset>
+		</jar>
+	</target>
+
+
+	<!-- Target for compiling classes -->
+	<target name="compile.java" description="Compiles source java files">
+		<echo message="Compiling java source." />
+		<echo message="Compiling java source..src.dir=${basedir}/src " />
+		<delete dir="${classes.dir}">
+			<exclude name="*.properties" />
+		</delete>
+		<mkdir dir="${classes.dir}" />
+		<path id="java-classpath">
+			<fileset dir="${classeslib}">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${sever.home}/lib">
+							<include name="*.jar" />
+						</fileset>
+			<!-- <fileset dir="${sever.home}/server/lib">
+				<include name="*.jar" />
+			</fileset>
+			-->
+						
+		</path>
+		<javac destdir="${classes.dir}" source="1.7" target="1.7" debug="true" deprecation="true" optimize="false" failonerror="true">
+			<src path="${basedir}/src" />
+			<classpath refid="java-classpath" />
+			
+		</javac>
+
+	</target>
+
+</project>
